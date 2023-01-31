@@ -155,4 +155,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _damageDealt: 1
-  _bullet: 1
+  _isBullet: 1

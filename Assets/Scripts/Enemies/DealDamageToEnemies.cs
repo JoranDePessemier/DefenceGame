@@ -33,11 +33,12 @@ public class DealDamageToEnemies : MonoBehaviour
 
     private void Hit(EnemyBehaviour enemyHit)
     {
-        if(_isBullet && !enemyHit.IsShootable)
+        if(_isBullet && enemyHit.IsShootable)
         {
+            enemyHit.CurrentHP -= _damageDealt;
             Destroy(this.gameObject);
         }
-        else
+        else if (!_isBullet)
         {
             enemyHit.CurrentHP -= _damageDealt;
         }

@@ -516,8 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _enemySpawns:
-    - _enemy: {fileID: 0}
-      _timeAfterRequiredKills: 0
+    - _enemy: {fileID: -315555950547535884, guid: f52443a324f72f74683ce8c79b091fec, type: 3}
       _requiredKills: 0
       _spawnPoint: {x: 10.41, y: 5.81}
     _textSceneName: 

@@ -9,9 +9,6 @@ public struct EnemySpawn
     private EnemyBehaviour _enemy;
 
     [SerializeField]
-    private float _timeAfterRequiredKills;
-
-    [SerializeField]
     private int _requiredKills;
 
     [SerializeField]
@@ -19,8 +16,6 @@ public struct EnemySpawn
 
 
     public EnemyBehaviour Enemy => _enemy;
-
-    public float TimeAfterRequiredKills => _timeAfterRequiredKills;
 
     public int RequiredKills => _requiredKills;
 

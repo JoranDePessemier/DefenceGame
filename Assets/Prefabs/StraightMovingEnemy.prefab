@@ -76,4 +76,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isShootable: 1
   _maxHP: 3
-  _moveSpeed: 2
+  _moveSpeed: 5

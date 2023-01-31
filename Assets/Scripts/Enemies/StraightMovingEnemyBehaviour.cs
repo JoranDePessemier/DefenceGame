@@ -17,12 +17,11 @@ public class StraightMovingEnemyBehaviour : EnemyBehaviour
         _body = this.GetComponent<Rigidbody2D>();
     }
 
-    protected override void Update()
+    protected  void FixedUpdate()
     {
         Vector2 movementVector = (_movementTarget - _body.position).normalized;
 
         _body.MovePosition(_body.position + movementVector * Time.deltaTime * _moveSpeed);
 
-        base.Update();
     }
 }
