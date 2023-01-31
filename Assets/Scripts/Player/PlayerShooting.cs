@@ -16,7 +16,12 @@ public class PlayerShooting : MonoBehaviour
     private float _timeBetweenShots = 1;
 
     [SerializeField]
+    private float _fireDistance;
+
+    [SerializeField]
     private Transform _bulletPrefab;
+
+
 
     private void Awake()
     {
@@ -26,7 +31,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject.Instantiate(_bulletPrefab, _transform.position, _transform.rotation);
+        GameObject.Instantiate(_bulletPrefab, _transform.position + _transform.up * _fireDistance, _transform.rotation);
     }
 
     private void Update()
