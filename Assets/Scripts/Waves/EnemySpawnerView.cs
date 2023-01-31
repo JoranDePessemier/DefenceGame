@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class TextSceneEventArgs : EventArgs
+{
+    public TextSceneEventArgs(string nextState)
+    {
+        NextState = nextState;
+    }
+
+    public string NextState { get; set; }
+}
+
+
 public class EnemySpawnerView : MonoBehaviour
 {
     [SerializeField]
@@ -15,6 +26,7 @@ public class EnemySpawnerView : MonoBehaviour
     private List<EnemyBehaviour> _spawnedEnemies = new List<EnemyBehaviour>();
 
     public event EventHandler<EventArgs> UpKillCounter;
+    public event EventHandler<TextSceneEventArgs> GoToTextScene;
 
     private void Start()
     {
@@ -46,15 +58,26 @@ public class EnemySpawnerView : MonoBehaviour
 
     }
 
+    internal void NextStateLoaded(int stateNumber)
+    {
+        OnGoToTextScene(new TextSceneEventArgs(_waves[stateNumber].TextSceneName)); 
+    }
+
+    internal void EndWaves()
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnUpKillCounter(EventArgs eventArgs)
     {
         var handler = UpKillCounter;
         handler?.Invoke(this, eventArgs);
     }
 
-    internal void EndWaves()
+    private void OnGoToTextScene(TextSceneEventArgs eventArgs)
     {
-        throw new NotImplementedException();
+        var handler = GoToTextScene;
+        handler?.Invoke(this, eventArgs);
     }
 
     #region Debug

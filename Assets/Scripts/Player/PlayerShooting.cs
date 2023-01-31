@@ -10,7 +10,11 @@ public class PlayerShooting : MonoBehaviour
 
     private bool _canShoot;
 
+    private bool _mousePlacedDownInScene;
+
     private Transform _transform;
+
+    public event EventHandler<EventArgs> ShotBullet;
 
     [SerializeField]
     private float _timeBetweenShots = 1;
@@ -32,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot()
     {
         GameObject.Instantiate(_bulletPrefab, _transform.position + _transform.up * _fireDistance, _transform.rotation);
+        OnShotBullet(EventArgs.Empty);
     }
 
     private void Update()
@@ -52,5 +57,11 @@ public class PlayerShooting : MonoBehaviour
         {
             _canShoot = true;
         }
+    }
+
+    private void OnShotBullet(EventArgs eventArgs)
+    {
+        var handler = ShotBullet;
+        handler?.Invoke(this, eventArgs);
     }
 }

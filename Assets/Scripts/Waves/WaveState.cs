@@ -53,6 +53,7 @@ public class WaveState : State
         if(_waveNumber < _spawnerView.Waves.Count - 1)
         {
             StateMachine.MoveTo($"Wave{_waveNumber + 1}");
+            _spawnerView.NextStateLoaded(_waveNumber+1);
         }
         else
         {
