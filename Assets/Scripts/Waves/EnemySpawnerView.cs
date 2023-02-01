@@ -27,6 +27,7 @@ public class EnemySpawnerView : MonoBehaviour
 
     public event EventHandler<EventArgs> UpKillCounter;
     public event EventHandler<TextSceneEventArgs> GoToTextScene;
+    public event EventHandler<EventArgs> WavesEnd;
 
     private void Start()
     {
@@ -65,7 +66,7 @@ public class EnemySpawnerView : MonoBehaviour
 
     internal void EndWaves()
     {
-        throw new NotImplementedException();
+        OnWavesEnd(EventArgs.Empty);
     }
 
     private void OnUpKillCounter(EventArgs eventArgs)
@@ -77,6 +78,12 @@ public class EnemySpawnerView : MonoBehaviour
     private void OnGoToTextScene(TextSceneEventArgs eventArgs)
     {
         var handler = GoToTextScene;
+        handler?.Invoke(this, eventArgs);
+    }
+
+    private void OnWavesEnd(EventArgs eventArgs)
+    {
+        var handler = WavesEnd;
         handler?.Invoke(this, eventArgs);
     }
 

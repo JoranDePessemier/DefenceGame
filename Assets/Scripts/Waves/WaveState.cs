@@ -20,7 +20,7 @@ public class WaveState : State
         _spawnerView = spawnerView;
         _enemyList = spawnerView.Waves[waveNumber].EnemySpawns;
         _maxKills = _enemyList.Count;
-
+        _waveNumber = waveNumber;
 
     }
 
@@ -34,7 +34,7 @@ public class WaveState : State
     public override void OnExit()
     {
         base.OnExit();
-        _spawnerView.UpKillCounter += UpKillCount;
+        _spawnerView.UpKillCounter -= UpKillCount;
     }
 
     private void UpKillCount(object sender, EventArgs e)

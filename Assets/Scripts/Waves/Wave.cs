@@ -11,6 +11,9 @@ public struct Wave
     [SerializeField]
     private string _textSceneName;
 
+    [SerializeField]
+    private float _timeBetweenAmmoDrops;
+
     public List<EnemySpawn> EnemySpawns => _enemySpawns;
 
     public string TextSceneName => _textSceneName;

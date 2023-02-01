@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlaySceneState : State
 {
     private EnemySpawnerView _enemySpawner;
+    private PlanetBehaviour _planetBehaviour;
 
-    public PlaySceneState(EnemySpawnerView enemySpawner)
+    public PlaySceneState(EnemySpawnerView enemySpawner,PlanetBehaviour planetBehaviour)
     {
         _enemySpawner = enemySpawner;
+        _planetBehaviour = planetBehaviour;
     }
 
     public override void OnEnter()
@@ -17,7 +19,19 @@ public class PlaySceneState : State
         base.OnEnter();
         Time.timeScale = 1;
         _enemySpawner.GoToTextScene += OpenTextScene;
+        _enemySpawner.WavesEnd += EndGame;
+        _planetBehaviour.PlayerDead += OpenGameOverScene;
         StateMachine.Push(_enemySpawner.Waves[0].TextSceneName);
+    }
+
+    private void EndGame(object sender, EventArgs e)
+    {
+        StateMachine.Push("WinState");
+    }
+
+    private void OpenGameOverScene(object sender, EventArgs e)
+    {
+        StateMachine.Push("GameOverState");
     }
 
     private void OpenTextScene(object sender, TextSceneEventArgs e)
@@ -28,6 +42,7 @@ public class PlaySceneState : State
     public override void OnSuspend()
     {
         base.OnSuspend();
+        _planetBehaviour.HealPlayerFull();
         Time.timeScale = 0;
     }
 

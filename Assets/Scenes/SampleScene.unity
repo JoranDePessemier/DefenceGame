@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4615210e568f9d3449884d5e016c6189, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 209dfb4430272c34ca28e2a0dae2f81c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 412863319}
   - component: {fileID: 412863317}
   - component: {fileID: 412863318}
+  - component: {fileID: 412863320}
   m_Layer: 0
   m_Name: DefenderSprite
   m_TagString: Untagged
@@ -228,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412863313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.61, z: 0}
+  m_LocalPosition: {x: 0, y: 1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,11 +301,11 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.18}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.22, y: 0.97}
+    oldSize: {x: 3.29, y: 1.49}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -360,8 +361,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenShots: 0.1
-  _fireDistance: 0
+  _fireDistance: 0.1
   _bulletPrefab: {fileID: 1815760091720208283, guid: b9d08cbf6260827429aafc3e7d6d3fbb, type: 3}
+  _shoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 412863320}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Shoot
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &412863318
 Rigidbody2D:
   serializedVersion: 4
@@ -400,6 +416,26 @@ MonoBehaviour:
     m_Bits: 64
   _damageDealt: 999
   _isBullet: 0
+--- !u!95 &412863320
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412863313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac2e4ff7699ac9240bda274388da52ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &431041091
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,11 +733,24 @@ MonoBehaviour:
       _requiredKills: 0
       _spawnPoint: {x: 10.41, y: 5.81}
     - _enemy: {fileID: -315555950547535884, guid: f52443a324f72f74683ce8c79b091fec, type: 3}
-      _requiredKills: 0
+      _requiredKills: 3
       _spawnPoint: {x: -10.34, y: 5.81}
     _textSceneName: TextTest
-  _currentDebugWave: 0
-  _currentDebugEnemy: 1
+    _timeBetweenAmmoDrops: 0
+  - _enemySpawns:
+    - _enemy: {fileID: -315555950547535884, guid: f52443a324f72f74683ce8c79b091fec, type: 3}
+      _requiredKills: 0
+      _spawnPoint: {x: 10.41, y: 5.81}
+    - _enemy: {fileID: -315555950547535884, guid: f52443a324f72f74683ce8c79b091fec, type: 3}
+      _requiredKills: 0
+      _spawnPoint: {x: -10.34, y: 5.81}
+    - _enemy: {fileID: -315555950547535884, guid: f52443a324f72f74683ce8c79b091fec, type: 3}
+      _requiredKills: 0
+      _spawnPoint: {x: -10.97, y: -6.58}
+    _textSceneName: TextTest1
+    _timeBetweenAmmoDrops: 0
+  _currentDebugWave: 1
+  _currentDebugEnemy: 2
 --- !u!4 &702797153
 Transform:
   m_ObjectHideFlags: 0
@@ -730,6 +779,7 @@ GameObject:
   - component: {fileID: 940043844}
   - component: {fileID: 940043842}
   - component: {fileID: 940043843}
+  - component: {fileID: 940043845}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -857,6 +907,26 @@ MonoBehaviour:
   _bulletDamage: 1
   _shootScript: {fileID: 412863317}
   _healthUI: {fileID: 41033080}
+--- !u!95 &940043845
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940043839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13234951bb47ce24cb16b1b0fea00b96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1775615184
 GameObject:
   m_ObjectHideFlags: 0

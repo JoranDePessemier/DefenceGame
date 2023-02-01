@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class PlayerShooting : MonoBehaviour
@@ -25,6 +26,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     private Transform _bulletPrefab;
 
+    [SerializeField]
+    private UnityEvent _shoot;
+
 
 
     private void Awake()
@@ -37,6 +41,7 @@ public class PlayerShooting : MonoBehaviour
     {
         GameObject.Instantiate(_bulletPrefab, _transform.position + _transform.up * _fireDistance, _transform.rotation);
         OnShotBullet(EventArgs.Empty);
+        _shoot.Invoke();
     }
 
     private void Update()

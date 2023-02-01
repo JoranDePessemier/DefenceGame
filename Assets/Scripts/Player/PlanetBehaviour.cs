@@ -26,10 +26,12 @@ public class PlanetBehaviour : MonoBehaviour
 
     private int _currentHealth;
 
+    public event EventHandler<EventArgs> PlayerDead;
+
     private void Awake()
     {
         _shootScript.ShotBullet += OnShotBullet;
-        _currentHealth = _maxHealth;
+        HealPlayerFull();
     }
 
     private void OnShotBullet(object sender, EventArgs e)
@@ -48,7 +50,7 @@ public class PlanetBehaviour : MonoBehaviour
     {
         if(_currentHealth <= 0)
         {
-            Debug.Log($"Player hp is {_currentHealth}, ded");
+            OnPlayerDead(EventArgs.Empty);
         }
     }
 
@@ -61,5 +63,16 @@ public class PlanetBehaviour : MonoBehaviour
             _currentHealth -= _enemyDamage;
             CheckDeath();
         }
+    }
+
+    internal void HealPlayerFull()
+    {
+        _currentHealth = _maxHealth;
+    }
+
+    private void OnPlayerDead(EventArgs eventArgs)
+    {
+        var handler = PlayerDead;
+        handler?.Invoke(this, eventArgs);
     }
 }
